@@ -1,0 +1,173 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 720" width="980" height="720" style="background:#fdfaf6; font-family:'Segoe UI', sans-serif;">
+  <defs>
+    <filter id="sketch" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="3" seed="2" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.2" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#374151"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="490" y="38" text-anchor="middle" font-size="22" font-weight="bold" fill="#1e3a5f" style="letter-spacing:1px">FMCG M&amp;A Newsletter — System Architecture</text>
+  <line x1="160" y1="46" x2="820" y2="46" stroke="#1e3a5f" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+  <!-- ═══════════════ USER LAYER ═══════════════ -->
+  <rect x="30" y="65" width="920" height="90" rx="12" fill="#e0f2fe" stroke="#7dd3fc" stroke-width="1.8" filter="url(#sketch)"/>
+  <text x="55" y="85" font-size="11" font-weight="bold" fill="#0369a1" letter-spacing="1">USER / BROWSER</text>
+
+  <!-- React App box -->
+  <rect x="340" y="90" width="300" height="52" rx="9" fill="#ffffff" stroke="#3b82f6" stroke-width="2" filter="url(#sketch)"/>
+  <text x="490" y="112" text-anchor="middle" font-size="13" font-weight="bold" fill="#1d4ed8">⚛  React App  (Vite)</text>
+  <text x="490" y="130" text-anchor="middle" font-size="10" fill="#6b7280">Generate Button · Status Poll · Tabs</text>
+
+  <!-- Export buttons note -->
+  <text x="660" y="108" font-size="9.5" fill="#059669">CSV · Word · Excel</text>
+  <text x="660" y="122" font-size="9.5" fill="#059669">downloads via browser</text>
+
+  <!-- localStorage note -->
+  <text x="170" y="108" font-size="9.5" fill="#7c3aed">localStorage</text>
+  <text x="170" y="122" font-size="9.5" fill="#7c3aed">remembers run_id</text>
+  <text x="170" y="136" font-size="9.5" fill="#7c3aed">on refresh</text>
+
+  <!-- ═══════════════ REST API ARROWS ═══════════════ -->
+  <line x1="490" y1="142" x2="490" y2="178" stroke="#374151" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <rect x="390" y="152" width="200" height="20" rx="4" fill="#fdfaf6"/>
+  <text x="490" y="166" text-anchor="middle" font-size="10" fill="#374151">REST API  (Render backend)</text>
+
+  <!-- ═══════════════ FASTAPI LAYER ═══════════════ -->
+  <rect x="30" y="180" width="920" height="80" rx="12" fill="#f0fdf4" stroke="#86efac" stroke-width="1.8" filter="url(#sketch)"/>
+  <text x="55" y="200" font-size="11" font-weight="bold" fill="#15803d" letter-spacing="1">FASTAPI  BACKEND</text>
+
+  <rect x="60" y="205" width="155" height="42" rx="7" fill="#fff" stroke="#22c55e" stroke-width="1.5" filter="url(#sketch)"/>
+  <text x="138" y="222" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#166534">POST /api/run</text>
+  <text x="138" y="237" text-anchor="middle" font-size="9" fill="#6b7280">starts background task</text>
+
+  <rect x="235" y="205" width="155" height="42" rx="7" fill="#fff" stroke="#22c55e" stroke-width="1.5" filter="url(#sketch)"/>
+  <text x="313" y="222" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#166534">GET /api/status</text>
+  <text x="313" y="237" text-anchor="middle" font-size="9" fill="#6b7280">reads checkpoint state</text>
+
+  <rect x="410" y="205" width="155" height="42" rx="7" fill="#fff" stroke="#22c55e" stroke-width="1.5" filter="url(#sketch)"/>
+  <text x="488" y="222" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#166534">GET /api/result</text>
+  <text x="488" y="237" text-anchor="middle" font-size="9" fill="#6b7280">full state + newsletter</text>
+
+  <rect x="585" y="205" width="155" height="42" rx="7" fill="#fff" stroke="#22c55e" stroke-width="1.5" filter="url(#sketch)"/>
+  <text x="663" y="222" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#166534">GET /exports</text>
+  <text x="663" y="237" text-anchor="middle" font-size="9" fill="#6b7280">CSV · Word · Excel</text>
+
+  <rect x="760" y="205" width="165" height="42" rx="7" fill="#fff" stroke="#22c55e" stroke-width="1.5" filter="url(#sketch)"/>
+  <text x="843" y="222" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#166534">GET /api/history</text>
+  <text x="843" y="237" text-anchor="middle" font-size="9" fill="#6b7280">past runs list</text>
+
+  <!-- ═══════════════ PIPELINE ARROW ═══════════════ -->
+  <line x1="490" y1="260" x2="490" y2="295" stroke="#374151" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <rect x="380" y="267" width="220" height="20" rx="4" fill="#fdfaf6"/>
+  <text x="490" y="281" text-anchor="middle" font-size="10" fill="#374151">graph.invoke()  →  background thread</text>
+
+  <!-- ═══════════════ LANGGRAPH PIPELINE ═══════════════ -->
+  <rect x="30" y="297" width="920" height="200" rx="12" fill="#faf5ff" stroke="#c4b5fd" stroke-width="1.8" filter="url(#sketch)"/>
+  <text x="55" y="318" font-size="11" font-weight="bold" fill="#6d28d9" letter-spacing="1">LANGGRAPH  PIPELINE  —  StateGraph  (PostgresSaver checkpoint per node)</text>
+
+  <!-- Node 1 -->
+  <rect x="55" y="328" width="125" height="60" rx="10" fill="#ede9fe" stroke="#7c3aed" stroke-width="2" filter="url(#sketch)"/>
+  <text x="118" y="351" text-anchor="middle" font-size="12" font-weight="bold" fill="#5b21b6">🔍 search</text>
+  <text x="118" y="367" text-anchor="middle" font-size="9" fill="#6b7280">Tavily · 7 queries</text>
+  <text x="118" y="380" text-anchor="middle" font-size="9" fill="#6b7280">~50 raw articles</text>
+
+  <line x1="180" y1="358" x2="210" y2="358" stroke="#374151" stroke-width="1.6" marker-end="url(#arrow)"/>
+
+  <!-- Node 2 -->
+  <rect x="210" y="328" width="125" height="60" rx="10" fill="#ede9fe" stroke="#7c3aed" stroke-width="2" filter="url(#sketch)"/>
+  <text x="273" y="351" text-anchor="middle" font-size="12" font-weight="bold" fill="#5b21b6">🔁 dedup</text>
+  <text x="273" y="367" text-anchor="middle" font-size="9" fill="#6b7280">Jaccard similarity</text>
+  <text x="273" y="380" text-anchor="middle" font-size="9" fill="#6b7280">&gt;70% overlap → drop</text>
+
+  <line x1="335" y1="358" x2="365" y2="358" stroke="#374151" stroke-width="1.6" marker-end="url(#arrow)"/>
+
+  <!-- Node 3 -->
+  <rect x="365" y="328" width="125" height="60" rx="10" fill="#ede9fe" stroke="#7c3aed" stroke-width="2" filter="url(#sketch)"/>
+  <text x="428" y="349" text-anchor="middle" font-size="12" font-weight="bold" fill="#5b21b6">🎯 relevance</text>
+  <text x="428" y="365" text-anchor="middle" font-size="9" fill="#6b7280">FMCG+deal keywords</text>
+  <text x="428" y="378" text-anchor="middle" font-size="9" fill="#6b7280">score ≥ 0.15 → keep</text>
+
+  <line x1="490" y1="358" x2="520" y2="358" stroke="#374151" stroke-width="1.6" marker-end="url(#arrow)"/>
+
+  <!-- Node 4 -->
+  <rect x="520" y="328" width="125" height="60" rx="10" fill="#ede9fe" stroke="#7c3aed" stroke-width="2" filter="url(#sketch)"/>
+  <text x="583" y="349" text-anchor="middle" font-size="12" font-weight="bold" fill="#5b21b6">✅ credibility</text>
+  <text x="583" y="365" text-anchor="middle" font-size="9" fill="#6b7280">domain trust map</text>
+  <text x="583" y="378" text-anchor="middle" font-size="9" fill="#6b7280">score &gt; 0.45 → keep</text>
+
+  <line x1="645" y1="358" x2="675" y2="358" stroke="#374151" stroke-width="1.6" marker-end="url(#arrow)"/>
+
+  <!-- Node 5 -->
+  <rect x="675" y="328" width="125" height="60" rx="10" fill="#ede9fe" stroke="#7c3aed" stroke-width="2" filter="url(#sketch)"/>
+  <text x="738" y="351" text-anchor="middle" font-size="12" font-weight="bold" fill="#5b21b6">🏷 enrich</text>
+  <text x="738" y="367" text-anchor="middle" font-size="9" fill="#6b7280">Claude extracts</text>
+  <text x="738" y="380" text-anchor="middle" font-size="9" fill="#6b7280">type · companies · $</text>
+
+  <line x1="800" y1="358" x2="830" y2="358" stroke="#374151" stroke-width="1.6" marker-end="url(#arrow)"/>
+
+  <!-- Node 6 -->
+  <rect x="830" y="328" width="100" height="60" rx="10" fill="#fce7f3" stroke="#db2777" stroke-width="2" filter="url(#sketch)"/>
+  <text x="880" y="351" text-anchor="middle" font-size="11" font-weight="bold" fill="#9d174d">📰 write</text>
+  <text x="880" y="367" text-anchor="middle" font-size="9" fill="#6b7280">Claude drafts</text>
+  <text x="880" y="380" text-anchor="middle" font-size="9" fill="#6b7280">5-section letter</text>
+
+  <!-- Checkpoint label -->
+  <rect x="55" y="400" width="875" height="22" rx="5" fill="#f3e8ff" stroke="#c4b5fd" stroke-width="1"/>
+  <text x="493" y="415" text-anchor="middle" font-size="9.5" fill="#7c3aed">💾  Each node checkpoints full state to PostgreSQL  →  survives server restart · resumable · inspectable via /api/status</text>
+
+  <!-- Funnel numbers -->
+  <text x="118" y="440" text-anchor="middle" font-size="9" fill="#9ca3af">~50</text>
+  <text x="273" y="440" text-anchor="middle" font-size="9" fill="#9ca3af">~45</text>
+  <text x="428" y="440" text-anchor="middle" font-size="9" fill="#9ca3af">~20</text>
+  <text x="583" y="440" text-anchor="middle" font-size="9" fill="#9ca3af">~10</text>
+  <text x="738" y="440" text-anchor="middle" font-size="9" fill="#9ca3af">~10 enriched</text>
+  <text x="880" y="440" text-anchor="middle" font-size="9" fill="#9ca3af">newsletter</text>
+  <text x="490" y="456" text-anchor="middle" font-size="9" fill="#9ca3af" font-style="italic">article count at each stage →</text>
+
+  <!-- ═══════════════ EXTERNAL SERVICES + DB ═══════════════ -->
+  <!-- Left arrow down from pipeline to external services -->
+  <line x1="200" y1="497" x2="200" y2="532" stroke="#374151" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="738" y1="497" x2="738" y2="532" stroke="#374151" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="880" y1="497" x2="880" y2="532" stroke="#374151" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- External services row -->
+  <rect x="30" y="535" width="920" height="95" rx="12" fill="#fff7ed" stroke="#fed7aa" stroke-width="1.8" filter="url(#sketch)"/>
+  <text x="55" y="555" font-size="11" font-weight="bold" fill="#c2410c" letter-spacing="1">EXTERNAL  SERVICES</text>
+
+  <!-- Tavily -->
+  <rect x="60" y="563" width="230" height="52" rx="9" fill="#fff" stroke="#f97316" stroke-width="1.8" filter="url(#sketch)"/>
+  <text x="175" y="584" text-anchor="middle" font-size="12" font-weight="bold" fill="#c2410c">🌐  Tavily Search API</text>
+  <text x="175" y="600" text-anchor="middle" font-size="9.5" fill="#6b7280">real-time web search · 7 queries</text>
+  <text x="175" y="613" text-anchor="middle" font-size="9.5" fill="#6b7280">30-day window · raw content</text>
+
+  <!-- Anthropic -->
+  <rect x="370" y="563" width="230" height="52" rx="9" fill="#fff" stroke="#f97316" stroke-width="1.8" filter="url(#sketch)"/>
+  <text x="485" y="584" text-anchor="middle" font-size="12" font-weight="bold" fill="#c2410c">🤖  OpenAI GPT-4o</text>
+  <text x="485" y="600" text-anchor="middle" font-size="9.5" fill="#6b7280">gpt-4o via langchain-openai</text>
+  <text x="485" y="613" text-anchor="middle" font-size="9.5" fill="#6b7280">enrichment + newsletter generation</text>
+
+  <!-- Postgres -->
+  <rect x="680" y="563" width="245" height="52" rx="9" fill="#fff" stroke="#f97316" stroke-width="1.8" filter="url(#sketch)"/>
+  <text x="803" y="584" text-anchor="middle" font-size="12" font-weight="bold" fill="#c2410c">🐘  PostgreSQL (Neon)</text>
+  <text x="803" y="600" text-anchor="middle" font-size="9.5" fill="#6b7280">LangGraph checkpoint store</text>
+  <text x="803" y="613" text-anchor="middle" font-size="9.5" fill="#6b7280">cloud hosted · free tier</text>
+
+  <!-- ═══════════════ OUTPUT LAYER ═══════════════ -->
+  <line x1="490" y1="630" x2="490" y2="655" stroke="#374151" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <rect x="30" y="657" width="920" height="52" rx="12" fill="#f0fdf4" stroke="#6ee7b7" stroke-width="1.8" filter="url(#sketch)"/>
+  <text x="55" y="677" font-size="11" font-weight="bold" fill="#065f46" letter-spacing="1">OUTPUTS</text>
+
+  <text x="175" y="695" text-anchor="middle" font-size="11" fill="#065f46">📄  Newsletter (Markdown)</text>
+  <text x="390" y="695" text-anchor="middle" font-size="11" fill="#065f46">📊  Excel  (3 sheets)</text>
+  <text x="590" y="695" text-anchor="middle" font-size="11" fill="#065f46">📝  Word  (.docx)</text>
+  <text x="790" y="695" text-anchor="middle" font-size="11" fill="#065f46">🗂  CSV  (raw articles)</text>
+
+  <!-- ═══════════════ LEGEND ═══════════════ -->
+  <text x="490" y="713" text-anchor="middle" font-size="8.5" fill="#9ca3af">Data flow →  ingestion · deduplication · relevance scoring · credibility check · LLM enrichment · generation</text>
+  <text x="490" y="726" text-anchor="middle" font-size="8.5" fill="#9ca3af">Deployed on →  Vercel (frontend)  ·  Render (backend)  ·  Neon (database)</text>
+</svg>
